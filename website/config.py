@@ -7,7 +7,8 @@ class Config(object):
     DEBUG = False
     DEVELOPMENT = False
     SECRET_KEY = os.getenv("SECRET_KEY", "dfal;dfkad adf")
-    SQLALCHEMY_DATABASE_URI = "postgresql"
+    if os.getenv("APP_SETTINGS") == "Config":
+        SQLALCHEMY_DATABASE_URI = "postgresql" + os.getenv("DATABASE_URL")[8:]
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class StagingConfig(Config):
